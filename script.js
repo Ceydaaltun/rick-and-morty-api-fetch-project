@@ -9,7 +9,7 @@ const pageInfo = document.querySelector('.page-info');
 
 searchForm.addEventListener("submit", submitSearch);
 
-function submitSearch(e){
+function submitSearch(e) {
   fetchResults(e);
 }
 
@@ -27,14 +27,20 @@ function fetchResults(e) {
 }
 
 function displayData(json) {
-  
+
+  const characters = json.results;
+
+
+  while (pageInfo.firstChild) {
+    pageInfo.removeChild(pageInfo.firstChild);
+    pageInfo.style.display = 'none';
+  }
+
   while (card.firstChild) {
     card.removeChild(card.firstChild)
   }
 
-  const characters = json.results;
 
-  
 
   if (characters.length === 0) {
     const para = document.createElement("p");
