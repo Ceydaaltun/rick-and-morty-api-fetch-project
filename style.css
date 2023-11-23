@@ -182,15 +182,17 @@ form {
     
 .card {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 1em;
+
 }
 
 .header{
     font-size: 2em;
 }
 
-
-
 }
+
+
 
 

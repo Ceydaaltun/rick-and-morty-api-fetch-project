@@ -36,10 +36,6 @@ function displayData(json) {
     pageInfo.style.display = 'none';
   }
 
-  while (card.firstChild) {
-    card.removeChild(card.firstChild)
-  }
-
 
 
   if (characters.length === 0) {
