@@ -35,6 +35,11 @@ function displayData(json) {
     pageInfo.removeChild(pageInfo.firstChild);
     pageInfo.style.display = 'none';
   }
+  
+  while(card.firstChild) {
+    card.removeChild(card.firstChild);
+
+  }
 
 
 
