@@ -1,0 +1,210 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --slime-green: #65ff00;
+    --faded-black: #000000cc;
+    --faded-slime: #66ff0065;
+}
+
+body {
+    font-family: "Audiowide", sans-serif;
+    font-size: 1em;
+    /* height: 100vh;   */
+    background-image: url("https://wallpaper.dog/large/17058391.jpg");
+    background-position: center;
+    background-repeat: repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+}
+
+
+header {
+    background-color: var(--faded-black);
+    color: var(--slime-green);
+    margin: 5px 10px;
+    border-radius: 5px;
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    transition: top 2s ease;
+}
+
+
+header.scroll-up {
+  top: 0;
+}
+
+header.scroll-down {
+  top: -100%;
+}
+
+h1 {
+    font-size: 1.5rem;
+    padding: 5px;
+    text-align: center;
+}
+
+form {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 10px;
+}
+
+#submit,
+#search {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px;
+    font-family: "Audiowide", sans-serif;
+}
+
+#submit {
+    background-color: var(--slime-green);
+    color: black;
+    border: none;
+    text-decoration: none;
+}
+
+.page-info {
+    background-color: var(--faded-black);
+    color: white;
+    font-family: "IBM Plex Sans", sans-serif;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+a:link,
+a:visited {
+    color: var(--slime-green);
+}
+
+a:hover,
+a:active {
+    background-color: black;
+}
+
+/* Data display styles */
+.cards-container {
+    padding: 10px;
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+
+}
+
+.character-div {
+    color: white;
+    padding: 5px;
+    background-color: var(--faded-black);
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    line-height: 1.5rem;
+}
+
+.char-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+li {
+    list-style-type: none;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1rem;
+}
+
+h2 {
+    font-size: 1rem;
+    align-self: center;
+}
+
+/* Filter display styles */
+.filter-display {
+    display: none;
+    gap: 5px;
+    background-color: var(--faded-black);
+    margin: 0 10px;
+    padding: 2px;
+    border-radius: 5px;
+    justify-content: flex-end;
+}
+
+#btn,
+#btn-2 {
+    background-color: var(--slime-green);
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+
+#btn-3 {
+    display: grid;
+    grid-template-columns: repeat(2, 15px);
+    grid-template-rows: repeat(2, 15px);
+    background-color: var(--slime-green);
+    border: none;
+    justify-items: center;
+}
+
+
+#btn span,
+#btn-2 span,
+#btn-3 span {
+    display: block;
+    background-color: black;
+}
+
+#btn span {
+    width: 28px;
+    height: 28px;
+    margin: 1px;
+}
+
+#btn-2 span {
+    width: 15px;
+    height: 28px;
+    margin: 1px;
+}
+
+#btn-3 span {
+    width: 13px;
+    height: 13px;
+    margin-top: 1px;
+}
+
+/* Media Queries */
+@media (min-width: 550px) {
+    .cards-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        padding: 5px;
+    }
+
+    form {
+        padding: 10px;
+        margin: 0;
+    }
+}

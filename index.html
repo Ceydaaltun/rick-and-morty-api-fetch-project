@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js" defer></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=IBM+Plex+Sans&display=swap" rel="stylesheet">
@@ -16,48 +16,62 @@
 </head>
 
 <body>
-  <div class="grid-container">
-    <div class="header">
-      <h1>Rick and Morty</h1>
-      <h2>Character Cards</h2>
-    </div>
-    <div class="menu">
-      <form>
-        <p>
-          <label for="search">Search:</label> 
-          <input type="text" id="search" class="search" required>
-        </p>
-        <p>
-          <button class="submit">Submit</button>
-        </p>
-      </form>
-    </div>
-    <div class="main">
-      <div class="page-info">
-        <p>
-          Hello, dear Rick and Morty fan! This web-page was developed to
-          practice coding.
-        </p>
-        <hr>
-        <p>Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim. The data and images are used
-          without claim of ownership and belong to their respective owners.
-        </p>
-        <hr>
-        <p>Moreover, special thanks to
-          <a href="https://rickandmortyapi.com/">The Rick and Morty API</a> developers!
-        </p>
-        <hr>
-        <p>
-          You can search your favorite Rick and Morty character name and all of that character cards will be displayed.
-          Enjoy it!
-        </p>
-      </div>
+  <header id="sticky-header">
+    <h1>Rick and Morty Character Cards</h1>
+    <form>
+      <label for="search">Search:</label>
+      <input type="text" id="search" class="search" required placeholder="Character name">
+      <button id="submit">Submit</button>
+    </form>
+  </header>
 
-      <div class="card">
-      </div>
-    </div>
-  </div>
+  <main>
 
-</body>
+    <div class="page-info">
+      <p>
+        Hello, dear Rick and Morty fan! This web-page was developed to
+        practice coding.
+      </p>
+      <hr>
+      <p>Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim. The data and images are used
+        without claim of ownership and belong to their respective owners.
+      </p>
+      <hr>
+      <p>Moreover, special thanks to
+        <a href="https://rickandmortyapi.com/" target="_blank">The Rick and Morty API</a> developers!
+      </p>
+      <hr>
+      <p>
+        You can search your favorite Rick and Morty character name and all of that character cards will be displayed.
+        Enjoy it!
+      </p>
+    </div>
+
+    <div class="filter-display"> 
+    
+      <button class="option" id="btn" data-cols="1">
+        <span></span>
+      </button> 
+
+      <button class="option" id="btn-2" data-cols="2">
+        <span></span>
+        <span></span>
+      </button>
+
+      <button class="option" id="btn-3" data-cols="4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+    <div class="cards-container">
+    </div>
+
+
+  </main>
+</body> 
 
 </html>

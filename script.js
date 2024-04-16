@@ -1,11 +1,12 @@
-baseURL = 'https://rickandmortyapi.com/api/character/'
+const searchTerm = document.querySelector(".search");
+const searchForm = document.querySelector("form");
+const cards = document.querySelector(".cards-container");
+const filterDisplay = document.querySelector(".filter-display");
+const pageInfo = document.querySelector(".page-info");
+const options = document.querySelectorAll(".option");
 
-const searchTerm = document.querySelector('.search');
-const searchForm = document.querySelector('form');
-const card = document.querySelector('.card');
-const main = document.querySelector('.main');
-const pageInfo = document.querySelector('.page-info');
 
+const baseURL = "https://rickandmortyapi.com/api/character/";
 
 searchForm.addEventListener("submit", submitSearch);
 
@@ -13,91 +14,115 @@ function submitSearch(e) {
   fetchResults(e);
 }
 
-function fetchResults(e) {
-  e.preventDefault();
 
+const fetchResults = (e) => {
+
+  e.preventDefault();
 
   let url = `${baseURL}?name=${searchTerm.value}`;
 
   fetch(url)
     .then((res) => res.json())
-    .then((json) => displayData(json))
-    .catch((err) => console.error(`Error fetching data: ${error}`))
+    .then((data) => displayResults(data))
+    .catch((err) => console.log(`Error fetching data: ${err}`))
+};
 
-}
 
-function displayData(json) {
+const displayResults = (data) => {
 
-  const characters = json.results;
+  cards.style.display = "grid";
+  filterDisplay.style.display = "flex"
 
 
   while (pageInfo.firstChild) {
     pageInfo.removeChild(pageInfo.firstChild);
-    pageInfo.style.display = 'none';
-  }
-  
-  while(card.firstChild) {
-    card.removeChild(card.firstChild);
-
+    pageInfo.style.display = "none";
   }
 
+  while (cards.firstChild) {
+    cards.removeChild(cards.firstChild);
 
-
-  if (characters.length === 0) {
-    const para = document.createElement("p");
-    para.textContent = "No results returned.";
-    card.appendChild(para);
-  } else {
-    for (const character of characters) {
-
-
-      const characterDiv = document.createElement("div");
-      characterDiv.setAttribute('class', 'characterDiv')
-
-      const characterList = document.createElement('ul');
-
-
-      const heading = document.createElement("h2");
-      const img = document.createElement("img");
-      const name = document.createElement('li');
-      const gender = document.createElement('li');
-      const species = document.createElement("li");
-      const status = document.createElement("li");
-      const location = document.createElement('li');
-      const origin = document.createElement('li');
-
-      heading.textContent = character.name;
-      name.textContent = `Name:    ${character.name}`;
-      gender.textContent = `Gender:    ${character.gender}`;
-      species.textContent = `Species:    ${character.species}`
-      status.textContent = `Status:    ${character.status}`
-      location.textContent = `Location:    ${character.location.name}`
-      origin.textContent = `Origin:    ${character.origin.name}`
-
-
-      img.src = character.image;
-      img.alt = character.name;
-
-
-
-      characterDiv.appendChild(heading);
-      characterDiv.appendChild(img)
-
-
-      characterList.appendChild(name);
-      characterList.appendChild(status)
-      characterList.appendChild(gender);
-      characterList.appendChild(species)
-      characterList.appendChild(location);
-      characterList.appendChild(origin);
-
-
-      characterDiv.appendChild(characterList);
-
-      card.appendChild(characterDiv)
-
-    }
   }
 
+  const { results } = data;
+
+  results.map((obj) => {
+
+    const { gender, name, species, image, status } = obj;
+
+    const { location: { name: locationName } } = obj
+
+    const { origin: { name: originName } } = obj
+
+    cards.innerHTML += `
+      <div class="character-div">
+      <h2>${name}</h2>
+      <img src="${image}" alt="${name}" class="char-img">
+      <ul>
+        <li>Location: ${locationName}</li>
+        <li>Origin: ${originName}</li>
+        <li>Gender: ${gender}</li>
+        <li>Species: ${species} </li>
+        <li>Status: ${status}</li>
+      </ul>
+    </div>
+`;
+  })
 };
+
+
+options.forEach(option => {
+  option.addEventListener("click", () => {
+    console.log(option, "option")
+    const cols = option.dataset.cols;
+    console.log(cols, "cols");
+
+    cards.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  })
+});
+
+
+const header = document.querySelector("header");
+const supportPageOffset = window.pageXOffset !== undefined;
+const isCSS1Compat = (document.compatMode || "") === "CSS1Compat"
+
+let prevScrollPos = 0;
+
+const isScrollingDown = () => {
+
+  //Calculate current scroll position on different browsers
+  let currentScrollPos =
+    supportPageOffset
+      ? window.pageYOffset
+      : isCSS1Compat
+        ?
+        document.documentElement.scrollTop //gives the y scroll position in standards mode
+        : document.body.scrollTop; //gives the y scroll position in quirks mode.
+
+  let isScrollDown;
+
+  if (currentScrollPos > prevScrollPos) {
+    isScrollDown = true;
+  } else {
+    isScrollDown = false;
+  }
+
+  //track scrolling direction during the next scroll event
+  prevScrollPos = currentScrollPos;
+  return isScrollDown;
+};
+
+const handleHeaderScroll = () => {
+  if (isScrollingDown() && !header.contains(document.activeElement)) {
+    header.classList.add("scroll-down");
+    header.classList.remove("scroll-up");
+
+  }
+  else {
+    header.classList.add("scroll-up");
+    header.classList.remove("scroll-down");
+  }
+}
+
+window.addEventListener("scroll", handleHeaderScroll);
 
