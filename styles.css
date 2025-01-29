@@ -14,14 +14,15 @@
 body {
     font-family: "Audiowide", sans-serif;
     font-size: 1em;
-    /* height: 100vh;   */
     background-image: url("https://wallpaper.dog/large/17058391.jpg");
-    background-position: center;
-    background-repeat: repeat;
-    -webkit-background-size: contain;
-    -moz-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
