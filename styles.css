@@ -14,25 +14,36 @@
 body {
     font-family: "Audiowide", sans-serif;
     font-size: 1em;
-    background-image: url("https://images7.alphacoders.com/133/thumb-1920-1335145.jpg");
+    background-color: black;
+    background-image: url("/rick-and-morty.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 1000px;
+}
+
+.content-wrapper {
+    background-image: url("./images/rick-morty-bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    min-height: 100vh;
+    padding-top: 10px;
 }
 
-
 header {
-    background-color: var(--faded-black);
+    background-color: black;
     color: var(--slime-green);
-    margin: 5px 10px;
-    border-radius: 5px;
+    margin: 0;
+    border-radius: 0;
     position: -webkit-sticky;
     /* Safari */
     position: sticky;
     transition: top 2s ease;
+    border: 1px solid var(--slime-green);
+    border-radius: 10px;
 }
-
 
 header.scroll-up {
   top: 0;
@@ -74,7 +85,7 @@ form {
 }
 
 .page-info {
-    background-color: var(--faded-black);
+    background-color: black;
     color: white;
     font-family: "IBM Plex Sans", sans-serif;
     border-radius: 5px;
@@ -95,7 +106,7 @@ a:active {
     background-color: black;
 }
 
-/* Data display styles */
+
 .cards-container {
     padding: 10px;
     display: none;
@@ -106,6 +117,8 @@ a:active {
 }
 
 .character-div {
+    border: 1px solid var(--slime-green);
+    border-radius: 10px;
     color: white;
     padding: 5px;
     background-color: var(--faded-black);
